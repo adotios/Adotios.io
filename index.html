@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DELTA V4</title>
+
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle at center, #001100, #000000);
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    overflow: hidden;
+    text-align: center;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.container {
+    margin-top: 150px;
+}
+
+h1 {
+    font-size: 60px;
+    text-shadow: 0 0 10px #00ff66,
+                 0 0 20px #00ff66,
+                 0 0 40px #00ff66,
+                 0 0 80px #00ff66;
+}
+
+.download-btn {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 18px 60px;
+    font-size: 24px;
+    color: #000;
+    background: #00ff66;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.progress-container {
+    width: 60%;
+    height: 25px;
+    background: #002200;
+    margin: 30px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    display: none;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #00ff66;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    font-size: 14px;
+    opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+    <h1>⚡ DELTA V4 ⚡</h1>
+    <p>> Preparing secure download...</p>
+
+    <div class="download-btn" onclick="startDownload()">
+        DOWNLOAD DELTA V4
+    </div>
+
+    <div class="progress-container" id="progressContainer">
+        <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+</div>
+
+<div class="footer">
+    DELTA V4 SYSTEM ONLINE
+</div>
+
+<!-- Nhạc nền ẩn từ YouTube -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/usBJRm0DNl0?autoplay=1&loop=1&playlist=usBJRm0DNl0"
+frameborder="0" allow="autoplay">
+</iframe>
+
+<script>
+// MATRIX EFFECT
+var canvas = document.getElementById("matrix");
+var ctx = canvas.getContext("2d");
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+var letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZΔ".split("");
+var fontSize = 16;
+var columns = canvas.width / fontSize;
+var drops = [];
+
+for (var x = 0; x < columns; x++) drops[x] = 1;
+
+function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00ff66";
+    ctx.font = fontSize + "px monospace";
+
+    for (var i = 0; i < drops.length; i++) {
+        var text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+        drops[i]++;
+    }
+}
+setInterval(draw, 33);
+
+// DOWNLOAD LOADING
+function startDownload() {
+    var progress = 0;
+    var bar = document.getElementById("progressBar");
+    var container = document.getElementById("progressContainer");
+    container.style.display = "block";
+
+    var interval = setInterval(function() {
+        progress++;
+        bar.style.width = progress + "%";
+        bar.innerHTML = progress + "%";
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            window.location.href = "https://zufile.com/download/rMocvRPKgn";
+        }
+    }, 30);
+}
+</script>
+
+</body>
+</html>
